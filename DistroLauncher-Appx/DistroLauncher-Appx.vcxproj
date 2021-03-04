@@ -84,7 +84,7 @@
     <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
     <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-    <AppxPackageDir>C:\Users\derek\source\repos\WSL-DistroLauncher\AppPackages\CentOS7Launcher-Appx\</AppxPackageDir>
+    <AppxPackageDir>C:\Users\derek\source\repos\WSL-DistroLauncher-CentOS7\AppPackages\CentOS7Launcher-Appx\</AppxPackageDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <GenerateManifest>true</GenerateManifest>
