@@ -1,42 +1,3 @@
-# WSL Distro Launcher Reference Implementation
-## Introduction 
-This is the C++ reference implementation for a Windows Subsystem for Linux (WSL) distribution installer/launcher application. Every distro package must include a launcher app, which is responsible for completing installation & registration of your distro with WSL, and for launching new distro instances atop WSL.
-
-Once you've built your distro launcher, packaged it along with the required art assets, manifest, and distro.tar.gz, and digitally signed the package, you will be able to sideload your distro on your own machine(s).
-  
-## Important! 
-Before publishing your distro to the Windows Store, you must first reach-out to and get approval from the WSL team: wslpartners@microsoft.com. 
-
-Without testing and approval from the WSL team, distros submitted to the store will be rejected. This process is required in order to ensure the quality and integrity of the WSL distro ecosystem, and to safeguard our users.
-
-## Goals
-The goal of this project is to enable:
-
-* Linux distribution owners to package and submit an application that runs on top of WSL to the Microsoft Store
-* Developers to create custom Linux distributions that can be sideloaded onto their dev machine
-
-## Contents
-This reference launcher provides the following functionality:
-(where `launcher.exe` is replaced by the distro-specific name)
-
-* `launcher.exe`
-  - Launches the user's default shell in the user's home directory.
-
-* `launcher.exe install [--root]`
-  - Install the distribution and do not launch the shell when complete.
-    - `--root`: Do not create a user account and leave the default user set to root.
-
-* `launcher.exe run <command line>`
-  - Run the provided command line in the current working directory. If no command line is provided, the default shell is launched.
-  - Everything after `run` is passed to WslLaunchInteractive.
-
-* `launcher.exe config [setting [value]]`
-  - Configure settings for this distribution.
-  - Settings:
-    - `--default-user <username>`: Sets the default user to <username>. This must be an existing user.
-
-* `launcher.exe help`
-  - Print usage information.
 
 ## Launcher Outline
 This is the basic flow of how the launcher code is set up.
@@ -88,7 +49,9 @@ So, if I wanted to instead call my distro "TheBestDistroEver", I'd change this t
     1. Ensure `<desktop:ExecutionAlias Alias="CentOS7.exe" />` ends in ".exe". This is the command that will be used to launch your distro from the command line and should match the executable name we picked in step 4.
     1. Make sure each of the `Executable` values matches the executable name we picked in step 4.
 
-7. Copy your tar.gz containing your distro into the root of the project and rename it to `install.tar.gz`.
+7. Download CentOS7.zip (https://github.com/wsldl-pg/CentWSL/releases/tag/7.0.1907.3) and extract it. 
+    1. "C:\Program Files\7-Zip\7z.exe" e CCentOS7.zip
+    2. Copy your rootfs.tar.gz containing your distro into the root of the project and rename it to `install.tar.gz`.
 
 ## Setting up your Windows Environment
 You will need a Windows environment to test that your app installs and works as expected. To set up a Windows environment for testing you can follow the steps from the [Windows Dev Center](https://developer.microsoft.com/en-us/windows/downloads/virtual-machines).
