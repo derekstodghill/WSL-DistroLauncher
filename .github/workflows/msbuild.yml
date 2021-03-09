@@ -19,9 +19,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: curl
-      uses: wei/curl@v1
-      with:
-        args: -LO https://github.com/wsldl-pg/CentWSL/releases/download/7.0.1907.3/CentOS7.zip
+      run: curl -LO https://github.com/wsldl-pg/CentWSL/releases/download/7.0.1907.3/CentOS7.zip
 
     - name: unzip CentOS7 zip file
       run: Expand-Archive CentOS7.zip
