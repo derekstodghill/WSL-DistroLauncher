@@ -17,11 +17,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
     - name: curl
+      uses: wei/curl@v1
       with:
         args: -LO https://github.com/wsldl-pg/CentWSL/releases/download/7.0.1907.3/CentOS7.zip
+
     - name: unzip CentOS7 zip file
       run: Expand-Archive CentOS7.zip
+
     - name: Copy tar.gz
       run: copy CentOS7\rootfs.tar.gz .\install.tar.gz
 
